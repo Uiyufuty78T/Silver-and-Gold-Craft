@@ -4,11 +4,14 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.occul.gold_and_silver_craft.GoldAndSilverCraft;
+import org.occul.gold_and_silver_craft.core.ModInf;
+import org.occul.gold_and_silver_craft.core.ModInfRegistry;
 import org.occul.gold_and_silver_craft.core.ModularBlock;
 import org.occul.gold_and_silver_craft.register.ModBlocks;
 
@@ -23,12 +26,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         for(var entry:ModBlocks.BLOCKS.getEntries()){
             Block block = entry.get();
-            if(block instanceof ModularBlock modularBlock){
-                if((modularBlock).hasTags()) {
-                    for (TagKey<Block> t : modularBlock.getTagKeys())
-                        tag(t).add(block);
-                }
-            }
+            ModInf<Block> inf = ModInfRegistry.getBlockInf(block);
+            for(TagKey<Block> t :inf.getTagKeys())
+                tag(t).add(block);
         }
 
         /*tag(BlockTags.MINEABLE_WITH_PICKAXE)

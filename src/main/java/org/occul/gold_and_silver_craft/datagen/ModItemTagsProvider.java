@@ -9,6 +9,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
 import org.occul.gold_and_silver_craft.GoldAndSilverCraft;
+import org.occul.gold_and_silver_craft.core.ModInf;
+import org.occul.gold_and_silver_craft.core.ModInfRegistry;
 import org.occul.gold_and_silver_craft.core.ModularItem;
 import org.occul.gold_and_silver_craft.register.ModItems;
 
@@ -24,11 +26,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         for(var entry: ModItems.ITEMS.getEntries()){
             Item item = entry.get();
-            if(item instanceof ModularItem modularItem){
-                if(modularItem.hasTags()){
-                    for(TagKey<Item> t : modularItem.getTagKeys())
-                        tag(t).add(item);
-                }
+            if(ModInfRegistry.hasItemInf(item)){
+                ModInf<Item> inf = ModInfRegistry.getItemInf(item);
+                for(TagKey<Item> t :inf.getTagKeys())
+                    tag(t).add(item);
             }
         }
     }

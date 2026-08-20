@@ -7,8 +7,11 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.occul.gold_and_silver_craft.GoldAndSilverCraft;
+import org.occul.gold_and_silver_craft.core.ModInf;
+import org.occul.gold_and_silver_craft.core.ModInfRegistry;
 import org.occul.gold_and_silver_craft.core.ModularItem;
 import org.occul.gold_and_silver_craft.register.ModItems;
 
@@ -25,17 +28,23 @@ public class ModItemModelsProvider extends ItemModelProvider {
             if(item instanceof ModularItem){
                 if(((ModularItem) item).isBasic())
                     basicItem(item);
+            }else if(ModInfRegistry.hasItemInf(item)){
+                ModInf<Item> inf = ModInfRegistry.getItemInf(item);
+                switch (inf.getModelState()){
+                    case BASIC -> basicItem(item);
+                    case HANDHELD -> handheldItem(entry);
+                }
             }
 
         }
         //basicItem(ModItems.SILVER_INGOT.get());
         //basicItem(ModItems.RAW_SILVER.get());
         //basicItem(ModItems.SILVER_NUGGET.get());
-        handheldItem(ModItems.SILVER_SWORD);
-        handheldItem(ModItems.SILVER_AXE);
-        handheldItem(ModItems.SILVER_PICKAXE);
-        handheldItem(ModItems.SILVER_SHOVEL);
-        handheldItem(ModItems.SILVER_HOE);
+        //handheldItem(ModItems.SILVER_SWORD);
+        //handheldItem(ModItems.SILVER_AXE);
+        //handheldItem(ModItems.SILVER_PICKAXE);
+        //handheldItem(ModItems.SILVER_SHOVEL);
+        //handheldItem(ModItems.SILVER_HOE);
 
     }
 

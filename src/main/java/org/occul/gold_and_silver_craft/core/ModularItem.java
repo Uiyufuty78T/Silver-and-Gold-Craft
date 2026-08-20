@@ -3,6 +3,7 @@ package org.occul.gold_and_silver_craft.core;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import org.occul.gold_and_silver_craft.datagen.ModEnUsLangProvider;
 import org.occul.gold_and_silver_craft.datagen.ModItemTagsProvider;
 import org.occul.gold_and_silver_craft.register.ModItems;

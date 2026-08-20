@@ -1,5 +1,6 @@
 package org.occul.gold_and_silver_craft.register;
 
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -11,6 +12,8 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.occul.gold_and_silver_craft.GoldAndSilverCraft;
+import org.occul.gold_and_silver_craft.core.ModInf;
+import org.occul.gold_and_silver_craft.core.ModInfRegistry;
 import org.occul.gold_and_silver_craft.core.ModularBlock;
 
 import java.util.function.Supplier;
@@ -20,36 +23,31 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, GoldAndSilverCraft.MODID);
 
     public static final RegistryObject<Block> SILVER_BLOCK =
-            registerBlock("silver_block",() -> new ModularBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops())
-                    .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
-                    .addTags(BlockTags.NEEDS_IRON_TOOL)
-                    .dropSelf()
-                    .usingBasicModel()
-                    .enUsLang("Silver Block"));
+            registerBlock("silver_block",() -> new ModularBlock(BlockBehaviour.Properties
+                    .copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops()),
+                    new ModInf<Block>().setEnUsName("Silver Block")
+                         .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL));
 
     public static final RegistryObject<Block> SILVER_ORE =
-            registerBlock("silver_ore",() -> new ModularBlock(BlockBehaviour.Properties.copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops())
-                    .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
-                    .addTags(BlockTags.NEEDS_IRON_TOOL)
-                    .usingBasicModel()
-                    .enUsLang("Silver Ore"));
+            registerBlock("silver_ore",() -> new ModularBlock(BlockBehaviour.Properties
+                    .copy(Blocks.GOLD_ORE).requiresCorrectToolForDrops()),
+                    new ModInf<Block>().setEnUsName("Silver Ore")
+                        .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL));
 
     public static final RegistryObject<Block> DEEPSLATE_SILVER_ORE =
-            registerBlock("deepslate_silver_ore",() -> new ModularBlock(BlockBehaviour.Properties.copy(Blocks.DEEPSLATE_GOLD_ORE).requiresCorrectToolForDrops())
-                    .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
-                    .addTags(BlockTags.NEEDS_IRON_TOOL)
-                    .usingBasicModel()
-                    .enUsLang("Deepslate Silver Ore"));
+            registerBlock("deepslate_silver_ore",() -> new ModularBlock(BlockBehaviour.Properties
+                    .copy(Blocks.DEEPSLATE_GOLD_ORE).requiresCorrectToolForDrops()),
+                    new ModInf<Block>().setEnUsName("Deepslate Silver Ore")
+                        .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL));
 
     public static final RegistryObject<Block> RAW_SILVER_BLOCK =
-            registerBlock("raw_silver_block",() -> new ModularBlock(BlockBehaviour.Properties.copy(Blocks.RAW_GOLD_BLOCK).requiresCorrectToolForDrops())
-                    .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
-                    .addTags(BlockTags.NEEDS_IRON_TOOL)
-                    .dropSelf()
-                    .usingBasicModel()
-                    .enUsLang("Raw Silver Block"));
+            registerBlock("raw_silver_block",() -> new ModularBlock(BlockBehaviour.Properties
+                    .copy(Blocks.RAW_GOLD_BLOCK).requiresCorrectToolForDrops()),
+                    new ModInf<Block>().setEnUsName("Raw Silver Block")
+                        .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL));
 
-    public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block){
+    public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, ModInf<Block> inf){
+        ModInfRegistry.registerBlockId(new ResourceLocation(GoldAndSilverCraft.MODID, name), inf);
         RegistryObject<T> aBlock = BLOCKS.register(name,block);
         registerBlockItem(name,aBlock);
         return aBlock;
