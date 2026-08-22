@@ -2,7 +2,12 @@ package org.occul.gold_and_silver_craft;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -27,9 +32,11 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.Debug;
 import org.occul.gold_and_silver_craft.register.ModBlocks;
 import org.occul.gold_and_silver_craft.register.ModCreativeModeTabs;
 import org.occul.gold_and_silver_craft.register.ModItems;
+import org.occul.gold_and_silver_craft.register.ModMobEffects;
 import org.slf4j.Logger;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -51,6 +58,7 @@ public class GoldAndSilverCraft {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
         ModCreativeModeTabs.register(modEventBus);
+        ModMobEffects.register(modEventBus);
         //end😇
 
         // Register ourselves for server and other game events we are interested in

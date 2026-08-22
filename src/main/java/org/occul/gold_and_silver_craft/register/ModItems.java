@@ -8,12 +8,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.occul.gold_and_silver_craft.GoldAndSilverCraft;
-import org.occul.gold_and_silver_craft.content.item.ModArmorMaterials;
-import org.occul.gold_and_silver_craft.content.item.ModToolTiers;
+import org.occul.gold_and_silver_craft.content.item.ModArmorItem;
+import org.occul.gold_and_silver_craft.content.item.base.ModArmorMaterials;
+import org.occul.gold_and_silver_craft.content.item.base.ModToolTiers;
+import org.occul.gold_and_silver_craft.content.tags.ModTags;
 import org.occul.gold_and_silver_craft.core.ModInf;
 import org.occul.gold_and_silver_craft.core.ModInfRegistry;
 
 import java.util.function.Supplier;
+
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -21,7 +24,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> SILVER_INGOT =
             registerItem("silver_ingot",() -> new Item(new Item.Properties()),
-                    new ModInf<Item>().setEnUsName("Silver Ingot"));
+                    new ModInf<Item>().setEnUsName("Silver Ingot").setZhCnName("银锭"));
     public static final RegistryObject<Item> RAW_SILVER =
             registerItem("raw_silver",() -> new Item(new Item.Properties()),
                     new ModInf<Item>().setEnUsName("Raw Silver"));
@@ -41,13 +44,32 @@ public class ModItems {
             registerHoe("silver_hoe", ModToolTiers.SILVER,new ModInf<Item>().setEnUsName("Silver Hoe"));
 
     public static final RegistryObject<Item> SILVER_HELMET =
-            registerArmor("silver_helmet",ArmorItem.Type.HELMET,new ModInf<Item>().setEnUsName("Silver Helmet"));
+            registerArmor("silver_helmet",ArmorItem.Type.HELMET,new ModInf<Item>()
+                    .setEnUsName("Silver Helmet")
+                    .addTags(ModTags.SILVER_ARMOR));
     public static final RegistryObject<Item> SILVER_CHESTPLATE =
-            registerArmor("silver_chestplate",ArmorItem.Type.CHESTPLATE,new ModInf<Item>().setEnUsName("Silver Chestplate"));
+            registerItem("silver_chestplate",() -> new ModArmorItem(ModArmorMaterials.SILVER,
+                    ArmorItem.Type.CHESTPLATE,new Item.Properties()),new ModInf<Item>()
+                    .setEnUsName("Silver Chestplate")
+                    .addTags(ModTags.SILVER_ARMOR));
     public static final RegistryObject<Item> SILVER_LEGGINGS =
-            registerArmor("silver_leggings",ArmorItem.Type.LEGGINGS,new ModInf<Item>().setEnUsName("Silver Leggings"));
+            registerArmor("silver_leggings",ArmorItem.Type.LEGGINGS,new ModInf<Item>()
+                    .setEnUsName("Silver Leggings")
+                    .addTags(ModTags.SILVER_ARMOR));
     public static final RegistryObject<Item> SILVER_BOOTS =
-            registerArmor("silver_boots",ArmorItem.Type.BOOTS,new ModInf<Item>().setEnUsName("Silver Boots"));
+            registerArmor("silver_boots",ArmorItem.Type.BOOTS,new ModInf<Item>()
+                    .setEnUsName("Silver Boots")
+                    .addTags(ModTags.SILVER_ARMOR));
+
+    public static final RegistryObject<Item> SILVER_CARROT =
+            registerItem("silver_carrot",() -> new Item(new Item.Properties().food(ModFoods.SILVER_CARROT)),
+                    new ModInf<Item>().setEnUsName("Silver Carrot"));
+    public static final RegistryObject<Item> SILVER_APPLE =
+            registerItem("silver_apple",() -> new Item(new Item.Properties().food(ModFoods.SILVER_APPLE).rarity(Rarity.RARE)),
+                    new ModInf<Item>().setEnUsName("Silver Apple"));
+    public static final RegistryObject<Item> ENCHANTED_SILVER_APPLE =
+            registerItem("enchanted_silver_apple",() -> new Item(new Item.Properties().food(ModFoods.ENCHANTED_SILVER_APPLE).rarity(Rarity.EPIC)),
+                    new ModInf<Item>().setEnUsName("Enchanted Silver Apple"));
 
     public static RegistryObject<Item> registerArmor(String name,ArmorItem.Type type, ModInf<Item> inf){
         return registerItem(name,() -> new ArmorItem(ModArmorMaterials.SILVER,

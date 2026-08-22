@@ -1,9 +1,8 @@
-package org.occul.gold_and_silver_craft.content.item;
+package org.occul.gold_and_silver_craft.content.item.base;
 
 import net.minecraft.Util;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ArmorMaterial;
 import net.minecraft.world.item.crafting.Ingredient;

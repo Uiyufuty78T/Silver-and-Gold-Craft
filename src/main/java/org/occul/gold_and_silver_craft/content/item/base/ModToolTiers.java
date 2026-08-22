@@ -1,11 +1,8 @@
-package org.occul.gold_and_silver_craft.content.item;
+package org.occul.gold_and_silver_craft.content.item.base;
 
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.LazyLoadedValue;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.block.Block;
-import org.jetbrains.annotations.Nullable;
 import org.occul.gold_and_silver_craft.register.ModItems;
 
 import java.util.function.Supplier;

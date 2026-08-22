@@ -6,7 +6,7 @@ import net.minecraft.world.level.ItemLike;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class ModInf<T extends ItemLike> {
+public class ModInf<T> {
 
     private String enUsName;
     private String zhCnName;
@@ -52,7 +52,7 @@ public class ModInf<T extends ItemLike> {
     }
 
     public String getZhCnName() {
-        return zhCnName;
+        return zhCnName==null?enUsName:zhCnName;
     }
 
     public ModInf<T> setZhCnName(String zhCn) {
