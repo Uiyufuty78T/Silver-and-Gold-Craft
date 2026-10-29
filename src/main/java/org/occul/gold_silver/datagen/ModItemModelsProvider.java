@@ -40,6 +40,10 @@ public class ModItemModelsProvider extends ItemModelProvider {
             }
         }
         basicItem(ModBlocks.SILVER_DOOR.get().asItem());
+        coinItem(ModItems.SILVER_COIN);
+        basicItem(ModBlocks.SILVER_BARS.get().asItem());
+        basicItem(ModBlocks.SILVER_CHAIN.get().asItem());
+        basicItem(ModBlocks.SILVER_LANTERN.get().asItem());
 
 
         //使原版支持Silver
@@ -83,10 +87,16 @@ public class ModItemModelsProvider extends ItemModelProvider {
     }
 
     private void coinItem(RegistryObject<Item> item){
+
         String outPath = item.getId().getPath();
         ResourceLocation parentPath = mcLoc("item/generated");
-        for(int i=1;i<=4;i++){
-
+        var baseCoin = withExistingParent(outPath,parentPath).texture("layer0",modLoc("item/"+outPath+"_1"));
+        for(int i=0;i<4;i++){
+            withExistingParent(outPath+ "_" + (i+1), parentPath)
+                    .texture("layer0",modLoc("item/" + outPath + "_" + (i+1)));
+            baseCoin.override()
+                    .model(new ModelFile.UncheckedModelFile(modLoc("item/"+outPath + "_" + (i+1))))
+                    .predicate(modLoc("amount"),i * 0.1f).end();
         }
     }
 

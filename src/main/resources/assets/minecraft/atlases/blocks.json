@@ -11,8 +11,8 @@
       ],
       "palette_key": "trims/color_palettes/trim_palette",
       "permutations": {
-        "silver": "gold_and_silver_craft:trims/color_palettes/silver",
-        "silver_darker": "gold_and_silver_craft:trims/color_palettes/silver_darker"
+        "silver": "gold_silver:trims/color_palettes/silver",
+        "silver_darker": "gold_silver:trims/color_palettes/silver_darker"
       }
     }
   ]

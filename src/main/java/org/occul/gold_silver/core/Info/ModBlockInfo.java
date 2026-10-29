@@ -18,7 +18,7 @@ public class ModBlockInfo extends ModTagElementInfo<Block> {
     }
 
     public enum BlockState{
-        SIMPLE,CONNECTED, STAIRS,SLAB,DOOR,TRAPDOOR,PRESSURE_PLATE,BUTTON;
+        SIMPLE,SPECIAL, STAIRS,SLAB,DOOR,TRAPDOOR,PRESSURE_PLATE,BUTTON,PANE;
     }
 
     public enum BlockLootTable {

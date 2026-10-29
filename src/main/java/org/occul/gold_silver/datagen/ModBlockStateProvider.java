@@ -4,12 +4,14 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.occul.gold_silver.GoldSilver;
 import org.occul.gold_silver.core.Info.ModBlockInfo;
 import org.occul.gold_silver.core.Info.ModElementInfoRegistry;
+import org.occul.gold_silver.register.ModBlocks;
 import org.occul.gold_silver.utils.ItemUtils;
 
 
@@ -31,8 +33,30 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 case DOOR -> transparentDoor((DoorBlock) block);
                 case TRAPDOOR -> transparentTrapdoorWithItem((TrapDoorBlock) block);
                 case PRESSURE_PLATE -> pressurePlateBlockWithItem((PressurePlateBlock) block, info.getBaseBlock());
+                //case PANE -> paneBlockWithItem((IronBarsBlock) block);
             }
         }
+        simpleBlockWithItem(ModBlocks.SILVER_GRATE.get(),models().cubeAll("silver_grate", modLoc("block/silver_grate")).renderType("cutout"));
+        lanternBlock(ModBlocks.SILVER_LANTERN.get());
+    }
+
+    private void lanternBlock(LanternBlock lantern){
+        String name = ItemUtils.getName(lantern);
+        var lanternModel = models().withExistingParent(name,mcLoc("block/template_lantern"))
+                .texture("lantern", modLoc("block/" + name)).renderType("cutout");
+        var hangingLantern = models().withExistingParent(name+"_hanging",mcLoc("block/template_hanging_lantern"))
+                .texture("lantern", modLoc("block/" + name)).renderType("cutout");
+        getVariantBuilder(lantern).forAllStatesExcept(state -> {
+            boolean hanging = state.getValue(LanternBlock.HANGING);
+            return ConfiguredModel.builder()
+                    .modelFile(hanging ? hangingLantern : lanternModel)
+                    .build();
+        },LanternBlock.WATERLOGGED);
+    }
+
+    private void paneBlockWithItem(IronBarsBlock bars){
+        String name = ItemUtils.getName(bars);
+        paneBlockWithRenderType(bars,modLoc("block/" + name), modLoc("block/" + name),"cutout");
     }
 
     private void pressurePlateBlockWithItem(PressurePlateBlock block, Block modelBlock) {

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gold_silver:block/silver_chain",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gold_silver:block/silver_chain"
+    },
+    "axis=z": {
+      "model": "gold_silver:block/silver_chain",
+      "x": 90
+    }
+  }
+}

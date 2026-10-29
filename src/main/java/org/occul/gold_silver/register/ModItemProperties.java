@@ -9,9 +9,9 @@ public class ModItemProperties {
                 (stack, world, entity, seed) -> {
                     int count = stack.getCount();
                     if(count <= 5) return 0.0f;
-                    if(count <= 20) return 0.3f;
-                    if(count <= 40) return 0.6f;
-                    if(count <= 64) return 1.0f;
+                    if(count <= 20) return 0.1f;
+                    if(count <= 40) return 0.2f;
+                    if(count <= 64) return 0.3f;
                     return 0.0f;
                 });
     }

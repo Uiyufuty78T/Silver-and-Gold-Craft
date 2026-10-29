@@ -88,6 +88,22 @@ public class ModBlocks {
                             .setName(new LangString("Cut Silver Slab", "切制银台阶"))
             );
 
+    public static final RegistryObject<Block> SILVER_GRATE =
+            registerBlock("silver_grate",() -> new Block(BlockBehaviour.Properties
+                    .copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops().noOcclusion()),
+                    ModBlockInfo.create().setBlockState(ModBlockInfo.BlockState.SPECIAL)
+                            .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL)
+                            .setName(new LangString("Silver Grate", "银格栅"))
+            );
+
+    public static final RegistryObject<Block> SILVER_BARS =
+            registerBlock("silver_bars",() -> new IronBarsBlock(BlockBehaviour.Properties
+                    .copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops().noOcclusion()),
+                    ModBlockInfo.create().setBlockState(ModBlockInfo.BlockState.SPECIAL)
+                            .addTags(BlockTags.MINEABLE_WITH_PICKAXE,BlockTags.NEEDS_IRON_TOOL)
+                            .setName(new LangString("Silver Bars", "银栏杆"))
+            );
+
     public static final RegistryObject<DoorBlock> SILVER_DOOR =
             registerBlock("silver_door",() -> new DoorBlock(BlockBehaviour.Properties
                     .copy(Blocks.GOLD_BLOCK).requiresCorrectToolForDrops().noOcclusion()
@@ -120,6 +136,21 @@ public class ModBlocks {
                             .setName(new LangString("Silver Pressure Plate", "银压力板"))
             );
 
+    public static final RegistryObject<ChainBlock> SILVER_CHAIN =
+            registerBlock("silver_chain",() -> new ChainBlock(BlockBehaviour.Properties
+                    .copy(Blocks.CHAIN).requiresCorrectToolForDrops().noOcclusion()),
+                    ModBlockInfo.create().setBlockState(ModBlockInfo.BlockState.SPECIAL)
+                            .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
+                            .setName(new LangString("Silver Chain", "银链"))
+            );
+
+    public static final RegistryObject<LanternBlock> SILVER_LANTERN =
+            registerBlock("silver_lantern",() -> new LanternBlock(BlockBehaviour.Properties
+                    .copy(Blocks.LANTERN).requiresCorrectToolForDrops().noOcclusion()),
+                    ModBlockInfo.create().setBlockState(ModBlockInfo.BlockState.SPECIAL)
+                            .addTags(BlockTags.MINEABLE_WITH_PICKAXE)
+                            .setName(new LangString("Silver Lantern", "银灯笼"))
+            );
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, ModElementInfo info){
         info.setLocation(GoldSilver.resourceLocation(name)).build();
         RegistryObject<T> aBlock = BLOCKS.register(name,block);
